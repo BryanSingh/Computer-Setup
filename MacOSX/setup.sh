@@ -80,7 +80,7 @@ nmap_package()
 wget_package()
 {
 	which wget
-	if [[ $? 1 != 0]]; then
+	if [[ $? 1 != 0 ]]; then
 		brew install wget
 	else
 		echo "wget is installed"
