@@ -83,8 +83,18 @@ wget_package()
 	if [[ $? 1 != 0]]; then
 		brew install wget
 	else
-		eco "wget is installed"
+		echo "wget is installed"
 	fi
+}
+
+vim_package()
+{
+	which vim
+
+	if [[ $? != 0 ]]; then
+		brew install vim
+	else
+		echo "vim is installed"
 }
 
 
@@ -145,10 +155,41 @@ install_database_postgresql()
 
 	#By default the postgresql user is your current OS X username with no password.
 }
+
+install_volitlity()
+{
+	cd
+	mkdir ~/Documents/Developer/forensics/
+	cd ~/Documents/Developer/forensics/
+	git clone https://github.com/volatilityfoundation/volatility.git
+	# cd volatility
+}
+
+install_virtualbox()
+{
+	which virtualbox
+
+	if [[ $? != 0]]; then
+		brew cask install virtualbox
+	else
+		echo "virtualbox is installed"
+}
+
+install_vagrant()
+{
+	which vagrant
+
+	if [[ $? != 0]]; then
+		brew cask install vagrant
+		brew cask install vagrant-manager
+	else
+		echo "vagrant is installed"
+}
+
 wget_package
 sublime_package
 nmap_package
-google_chrome_package
+#google_chrome_package
 java_package
 spotify_package
 git_package
