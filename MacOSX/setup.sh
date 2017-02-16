@@ -69,11 +69,21 @@ google_chrome_package()
 
 nmap_package()
 {
-		which nmap
+	which nmap
 	if [[ $? != 0 ]]; then
 		brew install nmap
 	else
-		"nmap is installed"
+		echo "nmap is installed"
+	fi
+}
+
+wget_package()
+{
+	which wget
+	if [[ $? 1 != 0]]; then
+		brew install wget
+	else
+		eco "wget is installed"
 	fi
 }
 
@@ -135,6 +145,7 @@ install_database_postgresql()
 
 	#By default the postgresql user is your current OS X username with no password.
 }
+wget_package
 sublime_package
 nmap_package
 google_chrome_package
