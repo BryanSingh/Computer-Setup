@@ -1,8 +1,8 @@
 #!/bin/sh
 # Bryan H. Singh
 #set -e
-echo "Script to help get your devleopers paltform up and running!"
-echo "Checking internet connection ..."
+echo "Script to help get your developers platform up and running!"
+echo "Checking Internet connection ..."
 
 #8.8.8.8 is a server hosted by google
 if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
@@ -20,56 +20,74 @@ DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 which brew
 if [[ $? != 0 ]]; then
 	# install homebrew
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
 	brew update
 fi
 
-# check to see if git is installed
-which git
-if [[ $? != 0 ]]; then
-	brew install git
-else
-	echo "git is installed"
-fi
+git_package()
+{
+    which git
+    if [[ $? != 0 ]]; then
+        brew install git
+    else
+        echo "git is installed"
+    fi
+}
 
-# check spotify
-which spotify
+spotify_package() {
 
-if [[ $? != 0 ]]; then
-	brew cask install spotify
-else
-	echo "spotify is installed"
-fi
+	 which spotify
 
-#check java
-which java
-if [[ $? != 0 ]]; then
-	brew cask install java
-else
-	echo "Java is installed"
-fi
+	if [[ $? != 0 ]]; then
+		brew cask install spotify
+	else
+		echo "spotify is installed"
+	fi
+}
 
-which google-chrome
-if [[ $? != 0 ]]; then
-	brew cask install google-chrome
-else
-	echo "google chrome is installed"
-fi
 
-which nmap
-if [[ $? != 0 ]]; then
-	brew install nmap
-else
-	"nmap is installed"
-fi
+java_package()
+{
+	which java
+	if [[ $? != 0 ]]; then
+		brew cask install java
+	else
+		echo "Java is installed"
+	fi
+}
 
-which sublime
-if [[ $? != 0 ]]; then
-	brew cask install sublime
-else
-	"sublime is installed"
-fi
+google_chrome_package()
+{
+	which google-chrome
+	if [[ $? != 0 ]]; then
+		brew cask install google-chrome
+	else
+		echo "google chrome is installed"
+	fi
+}
+
+nmap_package()
+{
+		which nmap
+	if [[ $? != 0 ]]; then
+		brew install nmap
+	else
+		"nmap is installed"
+	fi
+}
+
+
+sublime_package()
+{
+	which sublime
+	if [[ $? != 0 ]]; then
+		brew cask install sublime
+	else
+		"sublime is installed"
+	fi
+}
+
 install_rails()
 {
 	# check to see if homebrew is installed
@@ -115,8 +133,14 @@ install_database_postgresql()
 	# Then to load postgresql now:
 	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
-	#By default the postgresql user is your current OS X username with no password. 
+	#By default the postgresql user is your current OS X username with no password.
 }
+sublime_package
+nmap_package
+google_chrome_package
+java_package
+spotify_package
+git_package
 install_rails
 install_database_mySQL
 install_database_mySQL
