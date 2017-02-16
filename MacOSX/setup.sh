@@ -117,3 +117,6 @@ install_database_postgresql()
 
 	#By default the postgresql user is your current OS X username with no password. 
 }
+install_rails
+install_database_mySQL
+install_database_mySQL
